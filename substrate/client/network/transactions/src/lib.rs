@@ -154,11 +154,12 @@ impl TransactionsHandlerPrototype {
 			vec![format!("/{}/transactions/1", protocol_id.as_ref()).into()],
 			MAX_TRANSACTIONS_SIZE,
 			None,
+			// CitizenChain 是开放链，必须允许 CitizenApp 的 smoldot 轻客户端建立交易通知流。
 			SetConfig {
-				in_peers: 0,
-				out_peers: 0,
+				in_peers: 25,
+				out_peers: 25,
 				reserved_nodes: Vec::new(),
-				non_reserved_mode: NonReservedPeerMode::Deny,
+				non_reserved_mode: NonReservedPeerMode::Accept,
 			},
 			metrics,
 			peer_store_handle,

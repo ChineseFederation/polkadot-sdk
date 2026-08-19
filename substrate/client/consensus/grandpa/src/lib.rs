@@ -733,11 +733,12 @@ pub fn grandpa_peers_set_config<B: BlockT, N: NetworkBackend<B, <B as BlockT>::H
 		// Notifications reach ~256kiB in size at the time of writing on Kusama and Polkadot.
 		1024 * 1024,
 		None,
+		// CitizenChain 是开放链，必须允许 CitizenApp 的 smoldot 轻客户端建立 GRANDPA 通知流。
 		sc_network::config::SetConfig {
-			in_peers: 0,
-			out_peers: 0,
+			in_peers: 25,
+			out_peers: 25,
 			reserved_nodes: Vec::new(),
-			non_reserved_mode: sc_network::config::NonReservedPeerMode::Deny,
+			non_reserved_mode: sc_network::config::NonReservedPeerMode::Accept,
 		},
 		metrics,
 		peer_store_handle,
